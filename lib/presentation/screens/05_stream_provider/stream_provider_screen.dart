@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_app/presentation/screens/05_stream_provider/names_stream_provider.dart';
 
-class StreamProviderScreen extends ConsumerWidget {
+class StreamProviderScreen extends StatelessWidget {
   const StreamProviderScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final names = ref.watch(namesProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Stream Provider'), centerTitle: true),
-      body: names.when(
-        data: (data) => ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (_, i) => Text(data[i]),
-        ),
-        error: (_, __) => Text('Error al cargar los nombres'),
-        loading: () => CircularProgressIndicator(),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (_, i) => Text('item $i'),
       ),
     );
   }

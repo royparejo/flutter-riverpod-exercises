@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_app/domain/conf_assist_enum.dart';
-import 'package:riverpod_app/presentation/screens/02_developers_notifier/developers_notifier_provider.dart';
 
-class DevelopersNotifierScreen extends ConsumerWidget {
+class DevelopersNotifierScreen extends StatelessWidget {
   const DevelopersNotifierScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Flutter Conf')),
       body: DeveloperListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(devListProvider.notifier).addDev();
+          //
         },
         child: Icon(Icons.add),
       ),
@@ -21,13 +19,11 @@ class DevelopersNotifierScreen extends ConsumerWidget {
   }
 }
 
-class DeveloperListView extends ConsumerWidget {
+class DeveloperListView extends StatelessWidget {
   const DeveloperListView({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
-    final currentFiler = ref.watch(filterProvider);
-    final devList = ref.watch(devsFilterProvider);
+  Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
@@ -49,22 +45,21 @@ class DeveloperListView extends ConsumerWidget {
               icon: Text('Ausentes'),
             ),
           ],
-          selected: <ConfAssistEnum>{currentFiler},
+          selected: <ConfAssistEnum>{ConfAssistEnum.all},
           onSelectionChanged: (value) {
-            ref.read(filterProvider.notifier).toggleFilter(value);
+            //
           },
         ),
         SizedBox(height: 5),
         Expanded(
           child: ListView.builder(
-            itemCount: devList.length,
+            itemCount: 5,
             itemBuilder: (_, i) {
-              final item = devList[i];
               return SwitchListTile(
-                title: Text(item.name),
-                value: item.attended,
+                title: Text('item $i'),
+                value: false,
                 onChanged: (_) {
-                  ref.read(devListProvider.notifier).toogleAttend(item.id);
+                  //
                 },
               );
             },
