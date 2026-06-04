@@ -1,0 +1,16 @@
+import 'package:dio/dio.dart';
+
+class PokemonInformation {
+  static Future<String> getPokemonName(int pokemonId) async {
+    final dio = Dio();
+    await Future.delayed(Duration(seconds: 1));
+    try {
+      final response = await dio.get(
+        'https://pokeapi.co/api/v2/pokemon/$pokemonId',
+      );
+      return response.data['name'] ?? 'Nombre no se encontró';
+    } catch (_) {
+      return 'Nombre no se pudo obtener';
+    }
+  }
+}
