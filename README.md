@@ -26,3 +26,22 @@ This branch contains:
 * Ready-to-use screens and widgets
 
 You can use it to implement your own providers, state management solutions, and compare your approach with the completed implementation in the main branch.
+
+### Clone the repository
+
+```bash
+git clone https://github.com/freddgz/flutter-riverpod-exercises.git
+cd flutter-riverpod-exercises
+```
+
+### Switch to the starter branch
+
+```bash
+git checkout ui-only
+```
+
+Or, if you're using newer Git versions:
+
+```bash
+git switch ui-only
+```
